@@ -2,190 +2,119 @@
 
 #portfolio {
   padding: 20px 0 40px 0;
+  background-color: $white-color;
+
+  // Títulos principales
+  h1, h2, h3 {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  // Texto normal
+  p {
+    font-family: 'Open Sans', sans-serif;
+  }
 
   .portfolio__nav {
     ul {
       display: flex;
+
       li {
         padding: 5px 15px;
         margin-right: 10px;
         cursor: pointer;
         transition: 0.3s ease;
+        font-family: 'Playfair Display', serif;
       }
+
       li:hover {
         background-color: $main-color;
       }
     }
+
     .portfolio__nav-active {
       background-color: $main-color;
     }
   }
-  .portfolio__filter {
+
+  .eventos {
     display: flex;
-    justify-content: flex-end;
-    cursor: pointer;
-    margin-bottom: 50px;
-    background-attachment: fixed;
-    max-width: 200px;
-    float: right;
-    position: relative;
-    padding: 8px 10px;
-
-    p {
-      padding-right: 10px;
-    }
-
-    .portfolio__filter-menu {
-      background-color: $light-color;
-      position: absolute;
-      top: 40px;
-      left: 0;
-      width: 100%;
-      height: 100px;
-      text-align: center;
-      border-radius: 5px;
-      z-index: 999;
-      p {
-        padding: 8px 0;
-        margin: 2px 0;
-        transition: 0.3s ease;
-      }
-      p:hover {
-        background-color: $main-color;
-      }
-    }
-  }
-}
-
-.my-masonry-grid {
-  display: -webkit-box; /* Not needed if autoprefixing */
-  display: -ms-flexbox; /* Not needed if autoprefixing */
-  display: flex;
-  margin-left: -30px; /* gutter size offset */
-  width: auto;
-}
-.mint__gallery {
-  padding-left: 30px; /* gutter size */
-  background-clip: padding-box;
-}
- 
-/* Style your items */
-.mint__gallery > div { /* change div to reference your elements you put in <Masonry> */
-  margin-bottom: 30px;
-}
-
-@media screen and (max-width: 767px) {
-  #portfolio {
-    .portfolio__nav {
-      ul {
-        justify-content: center;
-      }
-    }
-    .portfolio__filter {
-      justify-content: center;
-      max-width: 200px;
-      margin: 30px auto;
-      float: none;
-
-    }
-  }
-}
-
-@media screen and (max-width: 400px) {
-  #portfolio {
-    .portfolio__nav {
-      ul {
-        li {
-          padding: 5px 5px;
-          margin-right: 5px;
-        }
-
-      }
-    }
-  }
-}
-
-.google-maps-banner {
-  margin: 20px auto; 
-  border-radius: 10px; 
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-
-  iframe {
-    border: none;
-    width: 100%; 
-    height: 350px;
-
-    @media screen and (max-width: 768px) {
-      width: 100%; /* Reduce el ancho al 90% */
-      height: 300px;
-      margin: 0 auto;
-    }
-
-    @media screen and (max-width: 576px) {
-      width: 100%; /* Reduce el ancho al 85% */
-      height: 250px;
-      margin: 0 auto;
-    }
-
-    @media screen and (max-width: 400px) {
-      width: 100%; /* Reduce el ancho al 80% */
-      height: 200px;
-      margin: 0 auto;
-    }
-  }
-}
-
-.eventos {
-  display: flex;
-  justify-content: center;
-  gap: 60px; // Aumentamos el espacio entre eventos
-  margin: 40px 0; // Aumentamos el margen superior e inferior
-
-  .evento {
-    text-align: center;
-    color: #000000;
-
-    h3 {
-      font-size: 3rem; // Aumentamos el tamaño del título
-      font-weight: 700;
-      margin-bottom: 15px;
-    }
-
-    .hora {
-      font-size: 4rem; // Aumentamos el tamaño de la hora
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .lugar {
-      font-size: 2rem; // Aumentamos el tamaño del lugar
-      margin: 10px 0;
-      font-weight: 600;
-    }
-
-    .direccion {
-      font-size: 2rem; // Aumentamos ligeramente el tamaño de la dirección
-      color: #7a6c64;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    flex-direction: column; // Apilado en pantallas pequeñas
-    gap: 40px;
+    justify-content: center;
+    gap: 60px;
+    margin: 20px 0;
 
     .evento {
-      .hora {
-        font-size: 3rem; // Ajuste para móviles
-      }
+      text-align: center;
+      color: #000000;
 
       h3 {
-        font-size: 4rem; // Ajuste del título para móviles
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 4rem;
+        font-weight: 700;
+        margin-bottom: 1px;
+      }
+
+      .hora {
+        font-family: 'Playfair Display', serif;
+        font-size: 3rem;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+
+      .lugar {
+        font-family: 'Playfair Display', sans-serif;
+        font-size: 2rem;
+        margin: 10px 0;
+        font-weight: 600;
+      }
+
+      .direccion {
+        font-family: 'Playfair Display', sans-serif;
+        font-size: 2rem;
+        color: #000000;
+      }
+    }
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      gap: 40px;
+
+      .evento {
+        .hora {
+          font-size: 3rem;
+        }
+
+        h3 {
+          font-size: 4rem;
+        }
+        .lugar {
+          font-size: 3rem;
+        }
+      }
+    }
+  }
+
+  .google-maps-banner {
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    iframe {
+      border: none;
+      width: 100%;
+      height: 350px;
+
+      @media screen and (max-width: 768px) {
+        height: 300px;
+      }
+
+      @media screen and (max-width: 576px) {
+        height: 250px;
+      }
+
+      @media screen and (max-width: 400px) {
+        height: 200px;
       }
     }
   }
 }
-
-
-
-

@@ -1,73 +1,106 @@
 .hero {
-  padding-top: 240px;
-  width: 100%;
-  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Subimos los textos */
+  text-align: center;
+  background-color: #f8f1ed; /* Fondo pastel */
+  background-image: url('../../assets/images/fondoWeddingMain.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  padding-top: 140px;
 
-  .hero-info {
-    padding-top: 60px;
-
-    p {
-      padding-top: 20px;
-      padding-bottom: 50px;
-    }
-  }
-
-  .hero-image {
-    max-width: 570px;
-    height: auto;
-    float: right;
-  }
-
-  // Estilos para el contador
-  .hero-countdown {
-    text-align: center;
-    margin-top: 30px;
-    padding: 20px;
-    font-size: 1.5rem;
+  // Contenido principal
+  .hero-content {
+    margin-top: 50px;
     color: #5a2d1b;
-    background-color: #f8f1ed;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
-    h2 {
-      margin-bottom: 10px;
-      font-size: 1.8rem;
-      font-weight: bold;
+    .hero-date {
+      font-family: "Noto Serif", serif;
+      font-size: 4rem;
+      font-weight: 400;
+      margin-bottom: 15px;
     }
 
-    p {
-      font-size: 1.6rem;
-      font-weight: 600;
+    .hero-names {
+      font-family: "Great Vibes", serif;
+      font-size: 8rem;
+      font-weight: 700;
+      margin: 10px 0;
+    }
+
+    .hero-marriage-message {
+      font-family: "Noto Serif", cursive;
+      font-size: 4rem;
+      font-weight: 400;
+      margin-top: 12px;
+    }
+
+    .hero-button {
+      margin-top: 50px;
+      padding: 10px 20px;
+      font-family: "Noto Serif", serif;
+      font-size: 2rem;
+      color: white;
+      background-color: #d67a7a;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #c56969;
+      }
     }
   }
-}
 
-@media screen and (max-width: 1080px) {
-  .hero {
+  // Media queries para responsividad
+  @media (max-width: 768px) {
     padding-top: 140px;
 
-    .hero-info {
-      padding-top: 0px;
-    }
+    .hero-content {
+      margin-top: 30px;
 
-    .hero-image {
-      float: none;
-      margin: 0 auto;
-      margin-top: 50px;
+      .hero-date {
+        font-size: 3rem;
+      }
+
+      .hero-names {
+        font-size: 6rem;
+      }
+
+      .hero-marriage-message {
+        font-size: 3rem;
+      }
+
+      .hero-button {
+        font-size: 2.5rem;
+      }
     }
   }
-}
 
-@media screen and (max-width: 990px) {
-  .hero {
-    .hero-info {
-      text-align: center;
-    }
+  @media (max-width: 480px) {
+    padding-top: 140px;
 
-    .hero-countdown {
-      font-size: 1.2rem;
-      h2 {
-        font-size: 1.5rem;
+    .hero-content {
+      margin-top: 30px;
+
+      .hero-date {
+        font-size: 2.5rem;
+      }
+
+      .hero-names {
+        font-size: 4rem;
+      }
+
+      .hero-marriage-message {
+        font-size: 2.5rem;
+      }
+
+      .hero-button {
+        font-size: 1.3rem;
       }
     }
   }

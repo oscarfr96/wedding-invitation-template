@@ -147,19 +147,19 @@ class EventInfo extends React.Component {
           <div className="eventos">
             <div className="evento">
               <h3>Ceremonia</h3>
-              <p className="hora">4 pm</p>
+              <p className="hora">- 4 pm -</p>
               <p className="lugar"><strong>El salón</strong></p>
               <p className="direccion">Av. Fray Antonio Alcalde, Guadalajara</p>
             </div>
             <div className="evento">
               <h3>Recepción</h3>
-              <p className="hora">6 pm</p>
+              <p className="hora">- 6 pm -</p>
               <p className="lugar"><strong>El vestíbulo</strong></p>
               <p className="direccion">Av. Fray Antonio Alcalde, Guadalajara</p>
             </div>
             <div className="evento">
               <h3>Fiesta</h3>
-              <p className="hora">8 pm</p>
+              <p className="hora">- 8 pm -</p>
               <p className="lugar"><strong>La terraza</strong></p>
               <p className="direccion">Av. Fray Antonio Alcalde, Guadalajara</p>
             </div>
