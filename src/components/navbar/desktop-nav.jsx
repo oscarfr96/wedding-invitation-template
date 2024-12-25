@@ -20,23 +20,23 @@ const desktopNav = (props) => (
       <div className="desktop__menu">
         <ul className="flex-s-between">
           <li>
-            <Link activeClass="active-link" to="portfolio" spy={true} smooth={true} offset={-70} duration={500}>
+            <Link activeClass="active-link" to="event-info" spy={true} smooth={true} offset={-70} duration={500}>
               LA BODA
             </Link>
           </li>
           <li>
-            <Link activeClass="active-link" to="about" spy={true} smooth={true} offset={-70} duration={500}>
+            <Link activeClass="active-link" to="indications" spy={true} smooth={true} offset={-70} duration={500}>
               CÓMO LLEGAR
             </Link>
           </li>
           <li>
             <Link activeClass="active-link" to="contact" spy={true} smooth={true} offset={-70} duration={500}>
-              ASISTENCIA
+              CONTACTO
             </Link>
           </li>
           <li>
-            <Link activeClass="active-link" to="contact" spy={true} smooth={true} offset={-70} duration={500}>
-              CONTACTO
+            <Link activeClass="active-link" to="attendance" spy={true} smooth={true} offset={-70} duration={500}>
+              ASISTENCIA
             </Link>
           </li>
         </ul>

@@ -1,119 +1,129 @@
-@import '../../style/App.scss';
+#event-info {
+  padding: 60px 20px;
+  background-color: #dbe6e0;
 
-#portfolio {
-  padding: 20px 0 40px 0;
-  background-color: $white-color;
-
-  // Títulos principales
-  h1, h2, h3 {
-    font-family: 'Cormorant Garamond', serif;
-  }
-
-  // Texto normal
-  p {
-    font-family: 'Open Sans', sans-serif;
-  }
-
-  .portfolio__nav {
-    ul {
-      display: flex;
-
-      li {
-        padding: 5px 15px;
-        margin-right: 10px;
-        cursor: pointer;
-        transition: 0.3s ease;
-        font-family: 'Playfair Display', serif;
-      }
-
-      li:hover {
-        background-color: $main-color;
-      }
+  .wrapper {
+    
+    h1, h2, h3 {
+      font-family: 'Cormorant Garamond', serif;
     }
 
-    .portfolio__nav-active {
-      background-color: $main-color;
-    }
-  }
-
-  .eventos {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    margin: 20px 0;
-
-    .evento {
-      text-align: center;
+    .subtitle {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      margin: 1px 0 50px;
       color: #000000;
-
-      h3 {
-        font-family: 'Cormorant Garamond', serif;
-        font-size: 4rem;
-        font-weight: 700;
-        margin-bottom: 1px;
-      }
-
-      .hora {
-        font-family: 'Playfair Display', serif;
-        font-size: 3rem;
-        font-weight: bold;
-        margin: 10px 0;
-      }
-
-      .lugar {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 2rem;
-        margin: 10px 0;
-        font-weight: 600;
-      }
-
-      .direccion {
-        font-family: 'Playfair Display', sans-serif;
-        font-size: 2rem;
-        color: #000000;
-      }
+      //text-align: center;
     }
 
-    @media screen and (max-width: 768px) {
-      flex-direction: column;
-      gap: 40px;
+    .eventos {
+      max-width: 900px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+      margin: 0 auto;
 
       .evento {
-        .hora {
-          font-size: 3rem;
+        background-color: #ffffff;
+        border: 2px solid #e8e3e0;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        flex: 1 1 calc(33% - 30px);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
         }
 
         h3 {
-          font-size: 4rem;
+          font-family: "Playfair Display", serif;
+          font-size: 2.5rem;
+          color: #d67a7a;
+          margin-bottom: 15px;
         }
+
+        .hora {
+          font-family: "Roboto", sans-serif;
+          font-size: 1.8rem;
+          font-weight: bold;
+          margin: 10px 0;
+          color: #5a2d1b;
+        }
+
         .lugar {
-          font-size: 3rem;
+          font-family: "Roboto", sans-serif;
+          font-size: 1.5rem;
+          margin: 10px 0;
+          color: #000;
+          font-weight: 600;
+        }
+
+        .direccion {
+          font-family: "Roboto", sans-serif;
+          font-size: 1.2rem;
+          color: #7a6c64;
+          font-style: italic;
+        }
+      }
+    }
+
+    .map-invitation {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      color: #5a2d1b;
+      text-align: center;
+      margin: 30px 0;
+    
+      .highlight {
+        font-weight: bold;
+        color: #d67a7a; /* Color del enlace */
+        text-decoration: none;
+        transition: color 0.3s;
+    
+        &:hover {
+          color: #b55d5d; /* Color al pasar el cursor */
+          text-decoration: underline;
+        }
+      }
+    }    
+
+    .google-maps-banner {
+      margin: 20px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+      iframe {
+        border: none;
+        width: 100%;
+        height: 350px;
+
+        @media screen and (max-width: 768px) {
+          height: 300px;
+        }
+
+        @media screen and (max-width: 576px) {
+          height: 250px;
+        }
+
+        @media screen and (max-width: 400px) {
+          height: 200px;
         }
       }
     }
   }
 
-  .google-maps-banner {
-    margin: 20px auto;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  @media screen and (max-width: 768px) {
+    .eventos {
+      flex-direction: column;
+      gap: 20px;
 
-    iframe {
-      border: none;
-      width: 100%;
-      height: 350px;
-
-      @media screen and (max-width: 768px) {
-        height: 300px;
-      }
-
-      @media screen and (max-width: 576px) {
-        height: 250px;
-      }
-
-      @media screen and (max-width: 400px) {
-        height: 200px;
+      .evento {
+        flex: 1 1 100%;
       }
     }
   }

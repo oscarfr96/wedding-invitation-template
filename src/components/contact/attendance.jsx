@@ -1,213 +1,122 @@
-import React from "react";
-import { Row, Col } from "react-flexbox-grid";
+import React, { useState } from "react";
 import "./attendance.scss";
-import * as emailjs from "emailjs-com";
+// Components
 import Title from "../ui-components/title/title";
-import ContactInfo from "./contactInfo/contactInfo";
-import ContactSocial from "./contactInfo/contactSocial";
-import Modal from "../contact-modal/Modal";
 
-import ContactBackground from "../../assets/contact/bg.png";
+const Attendance = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    needBus: false,
+    hasAllergies: false,
+    allergiesDetails: "",
+  });
 
-class Attendance extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "",
-      email: "",
-      phone: "", // Nuevo campo de teléfono
-      message: "",
-      needBus: false,
-      hasAllergies: false,
-      allergiesDetails: "",
-      sending: false,
-      successModal: false,
-      errorModal: false,
-    };
-  }
+  const [isSending, setIsSending] = useState(false);
 
-  inputHandler = (event) => {
+  const inputHandler = (event) => {
     const { name, value, type, checked } = event.target;
-    this.setState({
+    setFormData({
+      ...formData,
       [name]: type === "checkbox" ? checked : value,
     });
   };
 
-  handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    this.setState({ sending: true });
+    setIsSending(true);
 
-    const template_params = {
-      name: this.state.name,
-      email: this.state.email,
-      phone: this.state.phone, // Incluye el teléfono en el envío
-      message: this.state.message,
-      needBus: this.state.needBus ? "Sí" : "No",
-      hasAllergies: this.state.hasAllergies ? "Sí" : "No",
-      allergiesDetails: this.state.allergiesDetails || "N/A",
-    };
-
-    const API_KEY = ""; // YOUR EMAIL.JS API KEY
-    const TEMPLATE_ID = ""; // YOUR EMAIL.JS TEMPLATE ID
-
-    emailjs.send("default_service", TEMPLATE_ID, template_params, API_KEY).then(
-      (response) => {
-        if (response.status === 200) {
-          this.showSuccessModal();
-        } else {
-          this.showErrorModal();
-        }
-      },
-      (error) => {
-        this.showErrorModal();
-      }
-    );
+    // Simulación del envío
+    setTimeout(() => {
+      alert("¡Asistencia confirmada!");
+      setIsSending(false);
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
+        needBus: false,
+        hasAllergies: false,
+        allergiesDetails: "",
+      });
+    }, 2000);
   };
 
-  showSuccessModal = () => {
-    this.setState({ successModal: true, sending: false });
-    this.resetForm();
-  };
-
-  showErrorModal = () => {
-    this.setState({ errorModal: true, sending: false });
-    this.resetForm();
-  };
-
-  resetForm = () => {
-    this.setState({
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-      needBus: false,
-      hasAllergies: false,
-      allergiesDetails: "",
-    });
-  };
-
-  closeModal = () => {
-    this.setState({ successModal: false, errorModal: false });
-  };
-
-  render() {
-    const { hasAllergies, sending } = this.state;
-
-    let submitButtonRender = (
-      <div className="small__button">
-        <button aria-label="send message" type="submit">
-          Confirmar
-        </button>
+  return (
+    <div id="attendance">
+      <div className="wrapperAttendance">
+        <Title title="CONFIRMA TU ASISTENCIA" />
+        <p className="subtitle">
+          Por favor, confirma tu asistencia rellenando el siguiente formulario.
+        </p>
+        <form id="attendance-form" onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            placeholder="Nombre"
+            required
+            value={formData.name}
+            onChange={inputHandler}
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            required
+            value={formData.email}
+            onChange={inputHandler}
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Teléfono de contacto"
+            required
+            value={formData.phone}
+            onChange={inputHandler}
+          />
+          <textarea
+            name="message"
+            rows="3"
+            placeholder="Peticiones especiales, mensajes..."
+            value={formData.message}
+            onChange={inputHandler}
+          ></textarea>
+          <label className="checkbox-container">
+            <input
+              type="checkbox"
+              name="needBus"
+              checked={formData.needBus}
+              onChange={inputHandler}
+            />
+            Necesitaré autobús para los traslados
+          </label>
+          <label className="checkbox-container">
+            <input
+              type="checkbox"
+              name="hasAllergies"
+              checked={formData.hasAllergies}
+              onChange={inputHandler}
+            />
+            Tengo alguna alergia
+          </label>
+          {formData.hasAllergies && (
+            <textarea
+              name="allergiesDetails"
+              rows="3"
+              placeholder="Por favor, especifica tus alergias"
+              value={formData.allergiesDetails}
+              onChange={inputHandler}
+            ></textarea>
+          )}
+          <button type="submit" className="submit-button" disabled={isSending}>
+            {isSending ? "Enviando..." : "Confirmar asistencia"}
+          </button>
+        </form>
       </div>
-    );
-
-    if (sending) {
-      submitButtonRender = (
-        <div className="small__button sending-btn">
-          <div className="flex-center">
-            <div className="sbl-circ"></div>
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div id="contact">
-        <div className="wrapperAttendance">
-          <Title title="ASISTENCIA." />
-          <p className="font18">
-            Por favor, es importante que confirmes tu asistencia mediante el siguiente formulario:
-          </p>
-
-          <Row className="padding30">
-            <Col md={12} lg={6}>
-              <form id="contact-form" onSubmit={this.handleSubmit}>
-                <h4 className="font30 weight800 padding30">Confirma tu asistencia.</h4>
-                <input
-                  type="text"
-                  placeholder="Nombre"
-                  required
-                  name="name"
-                  value={this.state.name}
-                  onChange={this.inputHandler}
-                />
-                <input
-                  type="email"
-                  placeholder="Email"
-                  required
-                  name="email"
-                  value={this.state.email}
-                  onChange={this.inputHandler}
-                />
-                <input
-                  type="tel"
-                  placeholder="Teléfono de contacto"
-                  required
-                  name="phone"
-                  value={this.state.phone}
-                  onChange={this.inputHandler}
-                />
-                <textarea
-                  rows="3"
-                  placeholder="Peticiones especiales, mensajes de amor..."
-                  required
-                  name="message"
-                  value={this.state.message}
-                  onChange={this.inputHandler}
-                ></textarea>
-
-                {/* Checkbox para autobús */}
-                <div className="checkbox-container">
-                  <label>
-                    <input
-                      type="checkbox"
-                      name="needBus"
-                      checked={this.state.needBus}
-                      onChange={this.inputHandler}
-                    />
-                    Necesitaré autobús para los traslados
-                  </label>
-                </div>
-
-                {/* Checkbox para alergias */}
-                <div className="checkbox-container">
-                  <label>
-                    <input
-                      type="checkbox"
-                      name="hasAllergies"
-                      checked={this.state.hasAllergies}
-                      onChange={this.inputHandler}
-                    />
-                    Tengo alguna alergia
-                  </label>
-                </div>
-
-                {/* Textarea condicional para especificar alergias */}
-                {hasAllergies && (
-                  <textarea
-                    rows="3"
-                    placeholder="Por favor, especifica tus alergias"
-                    name="allergiesDetails"
-                    value={this.state.allergiesDetails}
-                    onChange={this.inputHandler}
-                  ></textarea>
-                )}
-
-                {submitButtonRender}
-              </form>
-            </Col>
-            <Col md={12} lg={6}>
-              <div className="flex-center">
-                <img src={ContactBackground} alt="contact background" />
-              </div>
-            </Col>
-          </Row>
-          <ContactInfo />
-          <ContactSocial />
-        </div>
-      </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Attendance;

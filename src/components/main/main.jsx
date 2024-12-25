@@ -6,7 +6,7 @@ const TARGET_DATE = new Date("2025-07-15T00:00:00");
 const Main = () => {
   const handleReservationClick = () => {
     // Lógica para redirigir o hacer scroll a la sección de reserva.
-    const reservationSection = document.getElementById("reservation");
+    const reservationSection = document.getElementById("attendance");
     if (reservationSection) {
       reservationSection.scrollIntoView({ behavior: "smooth" });
     }

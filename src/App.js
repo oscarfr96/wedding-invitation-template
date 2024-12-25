@@ -10,6 +10,7 @@ import EventInfo from "./components/eventInfo/eventInfo";
 import Carousel from "./components/carousel/carousel";
 import Indications from "./components/indications/indications";
 import Attendance from "./components/contact/attendance";
+import Contact from "./components/contact/contact";
 import Footer from "./components/footer/footer";
  
 class App extends React.Component {
@@ -70,6 +71,7 @@ class App extends React.Component {
         <EventInfo />
         <Carousel />
         <Indications />
+        <Contact />
         <Attendance />
         <Footer />
       </div>
