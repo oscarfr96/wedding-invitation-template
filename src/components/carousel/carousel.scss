@@ -1,0 +1,30 @@
+@import '../../style/App.scss';
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+#about {
+  padding: 60px 0;
+}
+
+.wrapper {
+  .slick-slide {
+    display: flex !important;
+    justify-content: center;
+  }
+
+  .slick-prev, 
+  .slick-next {
+    z-index: 2;
+    color: black !important;
+  }
+
+  .slick-dots {
+    bottom: -30px; // Ajusta la posición de los puntos de navegación
+  }
+}
+
+@media screen and (max-width: 990px) {
+  #about {
+    text-align: center;
+  }
+}
