@@ -1,35 +1,46 @@
 import React from "react";
 import { Row, Col } from "react-flexbox-grid";
-import { Link } from "react-scroll";
 import "./footer.scss";
 
-import Logo from '../../assets/footer/logo.svg';
-import Arrow from '../../assets/footer/arrow.svg';
+import Logo from "../../assets/footer/logo.svg";
+import Arrow from "../../assets/footer/arrow.svg";
 
-const partnerBox = () => (
-  <div className="footer">
-    <div className="wrapper">
-      <Row>
-        <Col xs={12} sm={6} md={6}>
-          <div className="footer-box">
-            <img src={Logo} alt="logo" />
-            <p>© 2025 - Óscar Fraile, All Right Reserved</p>
-            <p>
-              <a href="/wedding-invitation/admin-login">Acceso administración</a>
-            </p>
+const Footer = ({ onNavigate }) => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-          </div>
-        </Col>
-        <Col xs={12} sm={6} md={6}>
-          <Link to="hero" spy={true} smooth={true} offset={0} duration={500}>
-            <div className="footer-box back-to-top">
+  return (
+    <div className="footer">
+      <div className="wrapper">
+        <Row>
+          <Col xs={12} sm={6} md={6}>
+            <div className="footer-box">
+              <img src={Logo} alt="logo" />
+              <p>© 2025 - Óscar Fraile, All Right Reserved</p>
+              <p>
+                <button
+                  onClick={() => {
+                    scrollToTop();
+                    onNavigate("admin-login");
+                  }}
+                  className="admin-link"
+                >
+                  Acceso administración
+                </button>
+              </p>
+            </div>
+          </Col>
+          <Col xs={12} sm={6} md={6}>
+            <div className="footer-box back-to-top" onClick={scrollToTop}>
               <p>VOLVER ARRIBA</p>
               <img src={Arrow} alt="arrow" />
             </div>
-          </Link>
-        </Col>
-      </Row>
+          </Col>
+        </Row>
+      </div>
     </div>
-  </div>
-);
-export default partnerBox;
+  );
+};
+
+export default Footer;

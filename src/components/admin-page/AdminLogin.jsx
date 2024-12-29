@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import "./adminLogin.scss"; // Estilo personalizado
+import "./adminLogin.scss";
 
-const AdminLogin = () => {
+const AdminLogin = ({ onNavigate }) => {
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
-  const history = useHistory(); // Correcto para react-router-dom@5.x
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,7 +15,7 @@ const AdminLogin = () => {
 
     // Simulación de validación (puedes reemplazarlo con autenticación real)
     if (credentials.username === "admin" && credentials.password === "password123") {
-      history.push("/admin-dashboard"); // Redirige al dashboard
+      onNavigate("admin-dashboard"); // Usa la función pasada como prop para cambiar la vista
     } else {
       setError("Usuario o contraseña incorrectos");
     }

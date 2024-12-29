@@ -1,5 +1,4 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import React, { useState } from "react";
 import "./style/App.scss";
 
 // Components
@@ -18,6 +17,7 @@ import AdminDashboard from "./components/admin-page/AdminDashboard";
 
 class App extends React.Component {
   state = {
+    currentView: "home", // Controla qué vista se muestra
     userIsScrolled: false,
     mobileNavbarOpen: false,
   };
@@ -25,16 +25,13 @@ class App extends React.Component {
   componentDidMount() {
     window.addEventListener("scroll", this.userIsScrolled);
   }
+
   componentWillUnmount() {
     window.removeEventListener("scroll", this.userIsScrolled);
   }
 
   userIsScrolled = () => {
-    if (window.pageYOffset > 80) {
-      this.setState({ userIsScrolled: true });
-    } else {
-      this.setState({ userIsScrolled: false });
-    }
+    this.setState({ userIsScrolled: window.pageYOffset > 80 });
   };
 
   closeMobileMenu = () => {
@@ -45,58 +42,62 @@ class App extends React.Component {
     this.setState({ mobileNavbarOpen: true });
   };
 
-  render() {
-    const backdrop = this.state.mobileNavbarOpen ? (
-      <Backdrop closeMobileMenu={this.closeMobileMenu} isOpen={true} />
-    ) : (
-      <Backdrop closeMobileMenu={this.closeMobileMenu} />
-    );
+  renderView = () => {
+    const { currentView } = this.state;
+    switch (currentView) {
+      case "home":
+        return (
+          <>
+            <Main />
+            <EventInfo />
+            <Carousel />
+            <Indications />
+            <Contact />
+            <Attendance />
+            <Footer onNavigate={(view) => this.setState({ currentView: view })} />
+          </>
+        );
+      case "admin-login":
+        return <AdminLogin onNavigate={(view) => this.setState({ currentView: view })} />;
+      case "admin-dashboard":
+        return <AdminDashboard />;
+      default:
+        return (
+          <>
+            <Main />
+            <EventInfo />
+            <Carousel />
+            <Indications />
+            <Contact />
+            <Attendance />
+            <Footer onNavigate={(view) => this.setState({ currentView: view })} />
+          </>
+        );
+    }
+  };
 
-    const mobileNavbar = this.state.mobileNavbarOpen ? (
-      <MobileNav isOpen={true} closeMobileMenu={this.closeMobileMenu} />
-    ) : (
-      <MobileNav />
-    );
+  render() {
+    const { mobileNavbarOpen } = this.state;
+    const backdrop = mobileNavbarOpen && <Backdrop closeMobileMenu={this.closeMobileMenu} isOpen />;
+    const mobileNavbar = mobileNavbarOpen && <MobileNav
+                                                isOpen={this.state.mobileNavbarOpen}
+                                                closeMobileMenu={this.closeMobileMenu}
+                                                onNavigate={(view) => this.setState({ currentView: view })} // Pasar onNavigate
+                                              />
+  ;
 
     return (
-      <Router basename="/wedding-invitation">
-        <div className="App">
-          {mobileNavbar}
-          {backdrop}
-          <DesktopNav
-            userIsScrolled={this.state.userIsScrolled}
-            mobileMenuOpen={this.mobileMenuOpen}
-          />
+      <div className="App">
+        {mobileNavbar}
+        {backdrop}
+        <DesktopNav
+          userIsScrolled={this.state.userIsScrolled}
+          mobileMenuOpen={this.mobileMenuOpen}
+          onNavigate={(view) => this.setState({ currentView: view })} // Pasar onNavigate
+        />
 
-          <Switch>
-            {/* Página principal */}
-            <Route path="/" exact>
-              <Main />
-              <EventInfo />
-              <Carousel />
-              <Indications />
-              <Contact />
-              <Attendance />
-              <Footer />
-            </Route>
-
-            {/* Página de inicio de sesión para administración */}
-            <Route path="/admin-login" exact>
-              <AdminLogin />
-            </Route>
-
-            {/* Página de panel de administración */}
-            <Route path="/admin-dashboard" exact>
-              <AdminDashboard />
-            </Route>
-
-            {/* Redirigir cualquier otra ruta a la página principal */}
-            <Route>
-              <Redirect to="/" />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
+        {this.renderView()}
+      </div>
     );
   }
 }
