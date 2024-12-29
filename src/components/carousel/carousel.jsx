@@ -1,5 +1,4 @@
 import React from "react";
-import { Row, Col } from "react-flexbox-grid";
 import Slider from "react-slick"; // Importamos el carrusel
 import "./carousel.scss";
 // Components
