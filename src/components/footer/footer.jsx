@@ -15,7 +15,7 @@ const partnerBox = () => (
             <img src={Logo} alt="logo" />
             <p>© 2025 - Óscar Fraile, All Right Reserved</p>
             <p>
-              <a href="/admin-login">Acceso administración</a>
+              <a href="/wedding-invitation/admin-login">Acceso administración</a>
             </p>
 
           </div>

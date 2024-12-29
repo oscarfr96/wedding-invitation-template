@@ -59,7 +59,7 @@ class App extends React.Component {
     );
 
     return (
-      <Router>
+      <Router basename="/wedding-invitation">
         <div className="App">
           {mobileNavbar}
           {backdrop}
@@ -78,11 +78,6 @@ class App extends React.Component {
               <Contact />
               <Attendance />
               <Footer />
-            </Route>
-
-            {/* Redirigir /wedding-invitation a la página principal */}
-            <Route path="/wedding-invitation">
-              <Redirect to="/" />
             </Route>
 
             {/* Página de inicio de sesión para administración */}
