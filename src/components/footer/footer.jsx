@@ -14,6 +14,10 @@ const partnerBox = () => (
           <div className="footer-box">
             <img src={Logo} alt="logo" />
             <p>© 2025 - Óscar Fraile, All Right Reserved</p>
+            <p>
+              <a href="/admin-login">Acceso administración</a>
+            </p>
+
           </div>
         </Col>
         <Col xs={12} sm={6} md={6}>

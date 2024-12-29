@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import "./attendance.scss";
+// Firebase
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firebaseConfig"; // Asegúrate de que la ruta sea correcta
 // Components
 import Title from "../ui-components/title/title";
 
@@ -24,14 +27,19 @@ const Attendance = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSending(true);
 
-    // Simulación del envío
-    setTimeout(() => {
+    try {
+      // Guarda los datos en Firebase
+      await addDoc(collection(db, "attendance"), {
+        ...formData,
+        allergiesDetails: formData.allergiesDetails || "N/A", // Asegura un valor por defecto
+        timestamp: new Date(), // Marca de tiempo para el registro
+      });
+
       alert("¡Asistencia confirmada!");
-      setIsSending(false);
       setFormData({
         name: "",
         email: "",
@@ -41,7 +49,12 @@ const Attendance = () => {
         hasAllergies: false,
         allergiesDetails: "",
       });
-    }, 2000);
+    } catch (error) {
+      console.error("Error al guardar el registro:", error);
+      alert("Ocurrió un error al confirmar tu asistencia. Intenta de nuevo.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (

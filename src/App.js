@@ -1,18 +1,21 @@
-import React from 'react';
-import './style/App.scss';
+import React from "react";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import "./style/App.scss";
 
 // Components
-import DesktopNav from './components/navbar/desktop-nav';
-import MobileNav from './components/navbar/mobile-nav';
+import DesktopNav from "./components/navbar/desktop-nav";
+import MobileNav from "./components/navbar/mobile-nav";
 import Backdrop from "./components/navbar/backdrop";
-import Main from './components/main/main';
+import Main from "./components/main/main";
 import EventInfo from "./components/eventInfo/eventInfo";
 import Carousel from "./components/carousel/carousel";
 import Indications from "./components/indications/indications";
 import Attendance from "./components/contact/attendance";
 import Contact from "./components/contact/contact";
 import Footer from "./components/footer/footer";
- 
+import AdminLogin from "./components/admin-page/AdminLogin";
+import AdminDashboard from "./components/admin-page/AdminDashboard";
+
 class App extends React.Component {
   state = {
     userIsScrolled: false,
@@ -26,7 +29,6 @@ class App extends React.Component {
     window.removeEventListener("scroll", this.userIsScrolled);
   }
 
-  // Detect if user is scorlled down (used for add/disable extra large navbar)
   userIsScrolled = () => {
     if (window.pageYOffset > 80) {
       this.setState({ userIsScrolled: true });
@@ -34,47 +36,72 @@ class App extends React.Component {
       this.setState({ userIsScrolled: false });
     }
   };
-  // On closeMobileMenu click close navbar
+
   closeMobileMenu = () => {
     this.setState({ mobileNavbarOpen: false });
   };
-  // Mobile menu handler
+
   mobileMenuOpen = () => {
     this.setState({ mobileNavbarOpen: true });
   };
 
   render() {
-    // BACKDROP RENDER
-    let backdrop = <Backdrop closeMobileMenu={this.closeMobileMenu} />;
-    if (this.state.mobileNavbarOpen) {
-      backdrop = (
-        <Backdrop closeMobileMenu={this.closeMobileMenu} isOpen={true} />
-      );
-    }
-    // MOBILE NAVBAR RENDER
-    let mobileNavbar = <MobileNav />;
-    if (this.state.mobileNavbarOpen) {
-      mobileNavbar = (
-        <MobileNav isOpen={true} closeMobileMenu={this.closeMobileMenu} />
-      );
-    }
+    const backdrop = this.state.mobileNavbarOpen ? (
+      <Backdrop closeMobileMenu={this.closeMobileMenu} isOpen={true} />
+    ) : (
+      <Backdrop closeMobileMenu={this.closeMobileMenu} />
+    );
+
+    const mobileNavbar = this.state.mobileNavbarOpen ? (
+      <MobileNav isOpen={true} closeMobileMenu={this.closeMobileMenu} />
+    ) : (
+      <MobileNav />
+    );
 
     return (
-      <div className="App">
-        {mobileNavbar}
-        {backdrop}
-        <DesktopNav
-          userIsScrolled={this.state.userIsScrolled}
-          mobileMenuOpen={this.mobileMenuOpen}
-        />
-        <Main />
-        <EventInfo />
-        <Carousel />
-        <Indications />
-        <Contact />
-        <Attendance />
-        <Footer />
-      </div>
+      <Router>
+        <div className="App">
+          {mobileNavbar}
+          {backdrop}
+          <DesktopNav
+            userIsScrolled={this.state.userIsScrolled}
+            mobileMenuOpen={this.mobileMenuOpen}
+          />
+
+          <Switch>
+            {/* Página principal */}
+            <Route path="/" exact>
+              <Main />
+              <EventInfo />
+              <Carousel />
+              <Indications />
+              <Contact />
+              <Attendance />
+              <Footer />
+            </Route>
+
+            {/* Redirigir /wedding-invitation a la página principal */}
+            <Route path="/wedding-invitation">
+              <Redirect to="/" />
+            </Route>
+
+            {/* Página de inicio de sesión para administración */}
+            <Route path="/admin-login" exact>
+              <AdminLogin />
+            </Route>
+
+            {/* Página de panel de administración */}
+            <Route path="/admin-dashboard" exact>
+              <AdminDashboard />
+            </Route>
+
+            {/* Redirigir cualquier otra ruta a la página principal */}
+            <Route>
+              <Redirect to="/" />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     );
   }
 }
