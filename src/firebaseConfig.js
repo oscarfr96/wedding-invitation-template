@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD94UE7hHZVFj3-_FQflXXQ4IdtoZckCSc",
-  authDomain: "wedding-ivanmaria.firebaseapp.com",
-  projectId: "wedding-ivanmaria",
-  storageBucket: "wedding-ivanmaria.firebasestorage.app",
-  messagingSenderId: "612819287061",
-  appId: "1:612819287061:web:e0be7af7a1397bf187621c"
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 // Inicializar Firebase
