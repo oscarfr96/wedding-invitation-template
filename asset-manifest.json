@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/wedding-invitation-template/static/css/main.473d2443.css",
+    "main.js": "/wedding-invitation-template/static/js/main.eb3ccb74.js",
+    "static/js/239.2b77094f.chunk.js": "/wedding-invitation-template/static/js/239.2b77094f.chunk.js",
+    "static/js/213.893a43f2.chunk.js": "/wedding-invitation-template/static/js/213.893a43f2.chunk.js",
+    "static/js/455.17fcf105.chunk.js": "/wedding-invitation-template/static/js/455.17fcf105.chunk.js",
+    "static/media/fondoWeddingMain.png": "/wedding-invitation-template/static/media/fondoWeddingMain.edafd70dc8f2f4171fa4.png",
+    "static/media/slick.svg": "/wedding-invitation-template/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/wedding-invitation-template/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/wedding-invitation-template/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/wedding-invitation-template/static/media/slick.295183786cd8a1389865.woff",
+    "static/media/logo-yellow.svg": "/wedding-invitation-template/static/media/logo-yellow.249beb6b6112fc8238bc43392779d91a.svg",
+    "static/media/logo.svg": "/wedding-invitation-template/static/media/logo.3af1c1162a736964a77fbe1c8a265901.svg",
+    "index.html": "/wedding-invitation-template/index.html",
+    "static/media/mobile-close.svg": "/wedding-invitation-template/static/media/mobile-close.1ad1aa67d790c39210faead5a7d6d1e6.svg",
+    "static/media/mobile-menu.svg": "/wedding-invitation-template/static/media/mobile-menu.61f797891e164066eb7adef49d728757.svg",
+    "static/media/arrow.svg": "/wedding-invitation-template/static/media/arrow.381aec5b5f16a84e1a30cca424068de2.svg",
+    "main.473d2443.css.map": "/wedding-invitation-template/static/css/main.473d2443.css.map",
+    "main.eb3ccb74.js.map": "/wedding-invitation-template/static/js/main.eb3ccb74.js.map",
+    "239.2b77094f.chunk.js.map": "/wedding-invitation-template/static/js/239.2b77094f.chunk.js.map",
+    "213.893a43f2.chunk.js.map": "/wedding-invitation-template/static/js/213.893a43f2.chunk.js.map",
+    "455.17fcf105.chunk.js.map": "/wedding-invitation-template/static/js/455.17fcf105.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.473d2443.css",
+    "static/js/main.eb3ccb74.js"
+  ]
+}
